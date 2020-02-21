@@ -26,8 +26,8 @@ public:
 
 	int GetMouseXY()
 	{
-		x = GetMouseX() / 85;
-		y = GetMouseY() / 85;
+		x = (GetMouseX() - 25) / 60;
+		y = (GetMouseY() - 25) / 60;
 
 		return x, y;
 	};
@@ -185,6 +185,9 @@ public:
 
 		DrawBoard();
 
+		//DrawString(1, 2, "x: " + std::to_string(x), olc::BLACK, 1);
+		//DrawString(1, 13, "y: " + std::to_string(y), olc::RED, 1);
+
 
 		switch (state)
 		{
@@ -201,12 +204,14 @@ public:
 						if (BoardHasSpace())
 						{
 							OpponentsTurn();
-							//CheckForWin('o', Lost);
+							if (!CheckForWin('o', Lost)) {
+								if (!BoardHasSpace())
+								{
+									state = Draw;
+								}
+							}
 						}
-						else if (!BoardHasSpace())
-						{
-							state = Draw;
-						}
+						
 					}
 				}
 			}
@@ -255,10 +260,6 @@ public:
 				state = inProgress;
 			}
 			break;
-
-
-			//DrawString(1, 2, "x: " + std::to_string(x), olc::BLACK, 1);
-			//DrawString(1, 13, "y: " + std::to_string(y), olc::RED, 1);
 
 			return true;
 		}
