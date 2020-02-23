@@ -1,6 +1,6 @@
 #define OLC_PGE_APPLICATION
 #include <random>
-#include "C:\Users\joona\Desktop\olcPixelGameEngine-master\olcPixelGameEngine.h"
+#include "olcPixelGameEngine.h"
 
 class TicTacToe : public olc::PixelGameEngine
 {
@@ -64,8 +64,8 @@ public:
 		int flag = 0;
 		
 		//rows
-		for (int y = 0; y < 3; y++)
-			for (int x = 0; x < 3; x++){
+		for (int y = 0; y < 3; y++) {
+			for (int x = 0; x < 3; x++) {
 				if (GameField[y][x] == z) {
 					flag++;
 				}
@@ -78,10 +78,12 @@ public:
 					return true;
 				}
 			}
+			flag = 0;
+		}
 
 		//columns
 		flag = 0;
-		for (int x = 0; x < 3; x++)
+		for (int x = 0; x < 3; x++) {
 			for (int y = 0; y < 3; y++) {
 				if (GameField[y][x] == z) {
 					flag++;
@@ -95,6 +97,8 @@ public:
 					return true;
 				}
 			}
+			flag = 0;
+		}
 
 		//cross
 		flag = 0;
